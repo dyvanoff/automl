@@ -24,32 +24,46 @@ java -jar h2o.jar
 
 > Para acceder a la H2O Flow ingresar a [http://localhost:54321/](http://localhost:54321/)
 
-## Instalacion
+## Cómo usar H2O Flow
 
-1) Ubicarse en la carpeta root (/catpill) y ejecutar
-```bash
-sudo docker-compose build
-sudo docker-compose up -d
-```
+1) Una vez dentro de **H2O Flow** dirigirse a `Flow > Open Flow` y elegir el archivo `AutoML_Practico_MNIST_H2O`
+
+> ![](/imagenes/automl_open_flow.png)
+
+2) En esta notebook encontraremos los pasos para:
+
+* Importar archivo de train
+* Parsear archivo de train
+* Idem con archivo de test
+* Seleccionar la opcion de **Run AutoML** y definir los parametros de entrenamiento
+
+> ![](/imagenes/autom_flow_run_automl.png)
+>
+> En nuestro caso elegimos **kfold=3**, **max_runtime_secs=3600** y solamente utilizamos el modelo de DeepLearning
 
 
-## Usage
+De esta manera se puede correr todo el proyecto y luego de 1hs (*más adelante detallamos como cargar un modelo ya entrenado*) devuelve el resultado:
 
-```bash
-curl --location --request POST 'http://<server_ip>:8080/predict' \
---form 'File=@"/path/to/file.csv"'
-```
+> ![](/imagenes/autom_flow_results.png)
 
-## Configuracion
-- Para modificar el puerto desde donde escucha el servicio (por defecto `8080`), modificar el archivo `docker-compose.yml`
+Al seleccionar algun modelo del ranking nos devuelve todo el set de metricas del modelo, tales como:
 
-```
-nginx:
-    container_name: nginx
-    restart: always
-    build: ./nginx
-    networks:
-      - apinetwork
-    ports:
-      - "8080:8080" <--HERE!
-```
+* Resumen de los parametros del modelo seleccionado
+* Scoring - Logloss
+* Ranking de Variables más importantes
+* Confussion Matrix
+* Metricas de entrenaminto, validacion y cross validation
+
+> ![](/imagenes/autom_flow_model_summary.png)
+
+## Cargar Modelo Entrenado
+
+1) Dentro de **H2O Flow** Dirigirse a `Model > Import Model...`
+
+> ![](/imagenes/automl_open_trained_model.png)
+
+2) Esta accion agregara un campo en la notebook en donde deberemos especificar la ruta del archivo a cargar, seleccion  `Import` y luego `View Model`
+
+> ![](/imagenes/automl_imported_model.png)
+
+3) Finalmente podremos navegar por toda la informacion que nos devuelve H2O sobre el modelo.
