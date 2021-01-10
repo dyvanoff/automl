@@ -6,9 +6,23 @@
 - Marcelo Tisera
 - Dario Yvanoff
 
-
+## Estructura del GIT
+```
+|-imagenes
+|-notebooks
+| |-AutoML_Practico_MNIST_H2O                      <- Notebook H2O
+| |-AutoML_Practico_MNIST_SKLEARN.ipynb            <- Notebook Tradicional
+| |-AutoML_Practico_MNIST_Keras.ipynb              <- Notebook Tradicional
+| |-AutoML_Practico_MNIST_SKLEARN-checkpoint.ipynb
+|-h2o_modelos
+| |-automl_h2o_best_model                          <- Modelo H2O entrenado
+```
 
 ## Setup
+#### Para visualizar Notebooks .ipynb
+* Correr directamente sobre Google Colab
+
+#### Para visualizar Notebbok H2O
 - Tener instalado Java JRE
 - Instalar H20 Flow a partir de los pasos del sitio oficial de [H2O.ai](http://h2o-release.s3.amazonaws.com/h2o/rel-zermelo/3/index.html)
 
